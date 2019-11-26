@@ -10,14 +10,30 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using System.Device.Location;
+
 
 namespace WeatherApp
 {
     public partial class Form1 : Form
     {
+        public double lon;
+        public double lat;
+        public double tempC;
+        public double tempF;
+        public bool trig = true;
+
         public Form1()
         {
             InitializeComponent();
+            
+        }
+
+        private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            lat = e.Position.Location.Latitude;
+            lon = e.Position.Location.Longitude;
+            
         }
 
         private async void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -52,7 +68,16 @@ namespace WeatherApp
 
             label2.Text = oW.weather[0].description;
 
-            label3.Text = "Средняя температура: " + oW.main.temp.ToString("0.##");
+            tempF = oW.main.temp + 273.15;
+
+            if (trig)
+                label3.Text = "Средняя температура: " + oW.main.temp.ToString("0.##") + "°С";
+            else
+                label3.Text = "Средняя температура: " + tempF.ToString("0.##") + "°F";
+
+           // tempC = oW.main.temp;
+           // tempF = oW.main.temp + 273.15;
+
             label6.Text = "Скорость: " + oW.wind.speed.ToString() + " м/с";
             label7.Text = "Направление: " + oW.wind.deg.ToString() + "°";
             label4.Text = "Влажность: " + oW.main.humidity.ToString() + "%";
@@ -60,5 +85,21 @@ namespace WeatherApp
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //label3.Text = "Средняя температура: " + tempC.ToString("0.##") + "°С";
+            trig = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //label3.Text = "Средняя температура: " + tempF.ToString("0.##") + "°F";
+            trig = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
