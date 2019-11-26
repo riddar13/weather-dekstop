@@ -43,6 +43,15 @@ namespace WeatherApp
             response.Close();
 
             richTextBox1.Text = answer;
+
+            OpenWeather.OpenWeather oW = JsonConvert.DeserializeObject<OpenWeather.OpenWeather>(answer);
+
+            panel1.BackgroundImage = oW.weather[0].Icon;
+
+            label1.Text = oW.weather[0].main;
+
+            label2.Text = oW.weather[0].description;
+
         }
 
     }
