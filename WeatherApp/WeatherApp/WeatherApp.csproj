@@ -75,9 +75,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpenWeather\clouds.cs" />
     <Compile Include="OpenWeather\coord.cs" />
+    <Compile Include="OpenWeather\main.cs" />
     <Compile Include="OpenWeather\OpenWeather.cs" />
+    <Compile Include="OpenWeather\sys.cs" />
     <Compile Include="OpenWeather\weather.cs" />
+    <Compile Include="OpenWeather\wind.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

@@ -8,5 +8,8 @@ namespace WeatherApp.OpenWeather
 {
     class wind
     {
+        public double speed;
+        public double deg;
+        public double gust;
     }
 }

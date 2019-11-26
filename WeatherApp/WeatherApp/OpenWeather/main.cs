@@ -35,5 +35,35 @@ namespace WeatherApp.OpenWeather
                 _pressure = value / 1.3332239; //перевод в мл ртутного столба
             }
         }
+
+        public double humidity;
+
+        private double _temp_min;
+
+        public double temp_min
+        {
+            get
+            {
+                return _temp_min;
+            }
+            set
+            {
+                _temp_min = value - 273.15;
+            }
+        }
+
+        private double _temp_max;
+
+        public double temp_max
+        {
+            get
+            {
+                return _temp_max;
+            }
+            set
+            {
+                _temp_max = value - 273.15;
+            }
+        }
     }
 }
