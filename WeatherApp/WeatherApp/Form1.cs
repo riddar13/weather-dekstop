@@ -52,15 +52,11 @@ namespace WeatherApp
 
             label2.Text = oW.weather[0].description;
 
-            label3.Text = "Средняя температура (C): " + oW.main.temp.ToString("0.##");
-
-            label6.Text = "Скорость (м/с): " + oW.wind.speed.ToString();
-
-            label7.Text = "Направление: " + oW.wind.deg.ToString();
-
-            label4.Text = "Влажность (%): " + oW.main.humidity.ToString();
-
-            label5.Text = "Давление (мм): " + ((int)oW.main.pressure ).ToString();
+            label3.Text = "Средняя температура: " + oW.main.temp.ToString("0.##");
+            label6.Text = "Скорость: " + oW.wind.speed.ToString() + " м/с";
+            label7.Text = "Направление: " + oW.wind.deg.ToString() + "°";
+            label4.Text = "Влажность: " + oW.main.humidity.ToString() + "%";
+            label5.Text = "Давление: " + ((int)oW.main.pressure ).ToString() + " мм рт.ст.";
 
         }
 
