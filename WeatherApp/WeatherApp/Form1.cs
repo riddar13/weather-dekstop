@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using System.Device.Location;
+using System.Xml.Linq;
 
 
 namespace WeatherApp
@@ -22,6 +23,7 @@ namespace WeatherApp
         public double tempC;
         public double tempF;
         public String city;
+        public String cityGeo;
         public String an;
         public bool trig = true;
 
@@ -30,6 +32,14 @@ namespace WeatherApp
             InitializeComponent();
             
         }
+
+       /* private void geoloc()
+        {
+            var locationResponse = new WebClient().DownloadString("http://api.ipstack.com/ 62.182.194.56? access_key=83d6bc4609c1a17b8e12e8c4ddd27c47");
+            //var responseXml = XDocument.Parse(locationResponse);
+            //cityGeo = responseXml.Element("City").Value;
+            richTextBox1.Text = locationResponse;
+        }*/
 
         private void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
@@ -86,7 +96,12 @@ namespace WeatherApp
 
         private async void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            richTextBox1.Text = an;    
+            richTextBox1.Text = an;  
+           // var locationResponse = new WebClient().DownloadString("http://api.ipstack.com/ 62.182.194.56? access_key=83d6bc4609c1a17b8e12e8c4ddd27c47");
+            // var responseXml = XDocument.Parse(locationResponse).Element("Response");
+            //cityGeo = responseXml.Element("City").Value;
+           // City oWw = JsonConvert.DeserializeObject<City>(locationResponse);
+            //richTextBox1.Text = oWw.city;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -112,7 +127,11 @@ namespace WeatherApp
 
         private void button4_Click(object sender, EventArgs e)
         {
-            String queue = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=1499f87b39982a746c16f0c3ff09b18b";
+            // geoloc();
+            var locationResponse = new WebClient().DownloadString("http://api.ipstack.com/ 62.182.194.56? access_key=83d6bc4609c1a17b8e12e8c4ddd27c47");
+            City oWw = JsonConvert.DeserializeObject<City>(locationResponse);
+            String queue = "https://api.openweathermap.org/data/2.5/weather?q=" + oWw.city + "&APPID=1499f87b39982a746c16f0c3ff09b18b&lang=ru";
+            // String queue = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=1499f87b39982a746c16f0c3ff09b18b";
             handler(queue);
         }
 
