@@ -38,6 +38,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(892, 147);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // Form1
             // 
@@ -46,7 +47,6 @@
             this.ClientSize = new System.Drawing.Size(916, 534);
             this.Controls.Add(this.richTextBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
             this.ResumeLayout(false);
 
         }
